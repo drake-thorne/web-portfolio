@@ -81,6 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
+                // Force visible state immediately to ensure correct scroll calculation
+                target.classList.add('visible');
+
                 target.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
