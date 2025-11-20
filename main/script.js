@@ -46,6 +46,55 @@ document.addEventListener('DOMContentLoaded', () => {
         const scrolled = (window.pageYOffset / windowHeight) * 100;
         scrollProgress.style.width = scrolled + '%';
     });
+
+    // Smart Scroll Header
+    let lastScrollTop = 0;
+    let isNavigating = false;
+    const header = document.querySelector('header');
+
+    window.addEventListener('scroll', () => {
+        if (isNavigating) return;
+
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            // Scrolling down & passed top threshold
+            header.classList.add('header-hidden');
+        } else {
+            // Scrolling up
+            header.classList.remove('header-hidden');
+        }
+
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+    }, { passive: true });
+    // Smooth Scroll & Header Logic
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            // Hide header on click and block scroll listener
+            if (header) {
+                header.classList.add('header-hidden');
+            }
+
+            isNavigating = true;
+
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+
+                // Reset flag after scroll animation completes
+                setTimeout(() => {
+                    isNavigating = false;
+                    // Update lastScrollTop to prevent immediate showing on next small scroll
+                    lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                }, 1200);
+            }
+        });
+    });
 });
 
 // ===================================
@@ -194,15 +243,4 @@ function showResumePreview() {
 // ===================================
 // SMOOTH SCROLL ENHANCEMENT
 // ===================================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
+
