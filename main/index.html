@@ -1,68 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drake Thorne - Network/Software Engineer</title>
+    <title>Drake Thorne - Network Platform Engineer</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress"></div>
+
     <div class="container">
         <header>
             <nav>
                 <div class="logo">
                     <a href="http://drakethorne.com" style="text-decoration: none; color: inherit;">drakedev</a>
                 </div>
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
                 <ul>
-                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
         </header>
-        
-        
 
         <main>
             <section id="intro">
                 <h1>Hi, my name is <span class="highlight">Drake</span>.</h1>
-                <p>I'm going to attempt to learn a bunch of JavaScript in the future (hopefully) but this is a test website for now.</p>
+                <p class="tagline">Everything Networking and DevOps related.</p>
                 <div class="profile-image">
                     <img src="images/IMG_6562.jpg" alt="Drake Thorne" />
                 </div>
             </section>
-            <section id="projects">
-                <h2>Personal Projects</h2>
-                <div class="projects-grid">
-                    <div class="project">
-                        <h3>Personal Website</h3>
-                        <p>Self-built using HTML, CSS, and JavaScript.</p>
-                        <a href="javascript:void(0);" class="view-project" onclick="showComingSoon()">View Project</a>
-                    </div>
-                    <div class="project">
-                        <h3>Test project 2</h3>
-                        <p>Test paragraph</p>
-                        <a href="javascript:void(0);" class="view-project" onclick="showComingSoon()">View Project</a>
-                    </div>
-                    <div class="project">
-                        <h3>Test project 3</h3>
-                        <p>Test paragraph</p>
-                        <a href="javascript:void(0);" class="view-project" onclick="showComingSoon()">View Project</a>
+
+            <section id="about">
+                <h2>About Me</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>As a <strong>Network Platform Engineer</strong> at <strong>Nine Entertainment</strong>, I
+                            work on building and
+                            maintaining critical network infrastructure that powers Australia's leading media company.
+                        </p>
+                        <p>My passion lies in the intersection of networking and automation. I'm constantly exploring
+                            how DevOps methodologies can streamline operations and solve
+                            complex challenges.</p>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-number">4+</div>
+                                <div class="stat-label">Years Experience</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">∞</div>
+                                <div class="stat-label">Coffee Consumed</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">24/7</div>
+                                <div class="stat-label">Learning Mode</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </section>            
+            </section>
+
+            <section id="skills">
+                <h2>Skills & Technologies</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <div class="skill-icon">🌐</div>
+                        <h3>Networking</h3>
+                        <ul class="skill-list">
+                            <li>Network Automation</li>
+                            <li>Routing & Switching</li>
+                            <li>Network Security</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <div class="skill-icon">⚙️</div>
+                        <h3>DevOps</h3>
+                        <ul class="skill-list">
+                            <li>Ansible</li>
+                            <li>Kubernetes</li>
+                            <li>Terraform</li>
+                            <li>CI/CD Pipelines</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <div class="skill-icon">💻</div>
+                        <h3>Development</h3>
+                        <ul class="skill-list">
+                            <li>Python</li>
+                            <li>Go</li>
+                            <li>Shell Scripting</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- GitHub Contribution Section -->
+            <section id="github">
+                <h2>GitHub Activity</h2>
+                <div class="github-container">
+                    <img src="https://ghchart.rshah.org/6366f1/drake-thorne" alt="Drake's GitHub Contribution Chart"
+                        class="github-chart" style="filter: invert(1) hue-rotate(180deg);" />
+                    <p class="github-link">
+                        <a href="https://github.com/drake-thorne" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i> View my GitHub profile
+                        </a>
+                    </p>
+                </div>
+            </section>
+
             <section id="contact">
                 <h2>Let's work together.</h2>
                 <div class="contact-buttons">
-                    <a href="mailto:drake.thorne77@gmail.com" class="contact-button email" target="_blank" rel="noopener noreferrer">
+                    <a href="mailto:drake.thorne77@gmail.com" class="contact-button email" target="_blank"
+                        rel="noopener noreferrer">
                         <i class="fas fa-envelope"></i> Email
                     </a>
-                    <a href="https://www.linkedin.com/in/drakethorne/" class="contact-button linkedin" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.linkedin.com/in/drakethorne/" class="contact-button linkedin" target="_blank"
+                        rel="noopener noreferrer">
                         <i class="fab fa-linkedin"></i> LinkedIn
                     </a>
-                    <a href="https://github.com/drake-thorne" class="contact-button github" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-github"></i> GitHub
+                    <a href="javascript:void(0);" class="contact-button resume" onclick="showResumePreview()">
+                        <i class="fas fa-file-alt"></i> Resume
                     </a>
                 </div>
             </section>
@@ -75,4 +140,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
