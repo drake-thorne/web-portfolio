@@ -662,11 +662,11 @@ section.visible {
     width: 100%;
     max-width: 800px;
     border-radius: 8px;
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
 }
 
 .github-link {
-    margin-top: var(--spacing-md);
+    margin-top: var(--spacing-xs);
 }
 
 .github-link a {

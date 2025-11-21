@@ -16,6 +16,22 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
+// ===================================
+// LOAD GITHUB ACTIVITY FUNCTION
+function loadGitHubActivity() {
+    const container = document.getElementById('github-activity');
+    if (!container) return;
+    const img = document.createElement('img');
+    img.src = 'https://ghchart.rshah.org/6366f1/drake-thorne';
+    img.alt = "Drake's GitHub Contribution Chart";
+    img.className = 'github-chart';
+    img.style.filter = 'invert(1) hue-rotate(180deg)';
+    container.innerHTML = '';
+    container.appendChild(img);
+}
+
+// ===================================
+
 // Observe all sections
 document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('section');
@@ -98,7 +114,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    loadGitHubActivity();
 });
+// Load GitHub activity dynamically (removed redundant call)
 
 // ===================================
 // COMING SOON ALERT
@@ -243,7 +262,7 @@ function showResumePreview() {
     });
 }
 
-// ===================================
+
 // SMOOTH SCROLL ENHANCEMENT
 // ===================================
 
