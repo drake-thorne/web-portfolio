@@ -231,7 +231,7 @@ function showResumePreview() {
     buttonContainer.style.cssText = 'display: flex; gap: 1rem;';
 
     const downloadLink = document.createElement('a');
-    downloadLink.href = 'resume.pdf';
+    downloadLink.href = 'resume.pdf?v=' + Date.now();
     downloadLink.download = 'Drake_Thorne_Resume.pdf';
     downloadLink.style.cssText = 'background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%); color: white; border: none; padding: 0.5rem 1.5rem; border-radius: 12px; font-weight: 600; cursor: pointer; font-size: 0.9rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;';
     downloadLink.innerHTML = '<i class="fas fa-download"></i> Download';
@@ -242,7 +242,7 @@ function showResumePreview() {
     closeButton.onclick = () => modal.remove();
 
     const iframe = document.createElement('iframe');
-    iframe.src = 'resume.pdf';
+    iframe.src = 'resume.pdf?v=' + Date.now();
     iframe.style.cssText = 'width: 100%; height: 100%; border: none; border-radius: 12px; background: white;';
 
     buttonContainer.appendChild(downloadLink);
