@@ -785,6 +785,18 @@ section.visible {
 }
 
 /* ===================================
+   LINKEDIN BADGE STYLES
+   =================================== */
+.badge-base {
+    display: inline-block !important;
+}
+
+#contact > div:has(.badge-base) {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ===================================
    CONTACT SECTION
    =================================== */
 #contact {
@@ -917,6 +929,13 @@ footer {
     }
 }
 
+@media (max-width: 768px) {
+    .badge-base {
+        transform: scale(0.8);
+        transform-origin: center;
+    }
+}
+
 @media (max-width: 480px) {
     .profile-image img {
         width: 220px;
@@ -927,6 +946,11 @@ footer {
         flex-direction: column;
         align-items: center;
         gap: var(--spacing-xs);
+    }
+
+    .badge-base {
+        transform: scale(0.75);
+        transform-origin: center;
     }
 }
 
