@@ -468,7 +468,7 @@ section.visible {
     font-size: var(--font-size-md);
     color: var(--color-text-secondary);
     line-height: 1.8;
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
 }
 
 .about-text strong {
@@ -483,16 +483,17 @@ section.visible {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: var(--spacing-md);
-    margin-top: var(--spacing-lg);
+    margin-top: var(--spacing-2xl);
 }
 
 .stat-card {
     background: rgba(30, 35, 64, 0.5);
     backdrop-filter: blur(var(--blur-sm));
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.2);
     border-radius: 16px;
     padding: var(--spacing-md);
     transition: var(--transition-base);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
 }
 
 .stat-card:hover {
@@ -818,10 +819,10 @@ section.visible {
     border: 2px solid rgba(99, 102, 241, 0.3);
     color: var(--color-text-primary);
     text-decoration: none;
-    padding: 1rem 2rem;
+    padding: 1.25rem 3rem;
     border-radius: 16px;
     font-weight: 600;
-    font-size: var(--font-size-sm);
+    font-size: 1.1rem;
     transition: var(--transition-base);
     position: relative;
     overflow: hidden;
@@ -851,7 +852,7 @@ section.visible {
 }
 
 .contact-button i {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
 }
 
 /* ===================================
