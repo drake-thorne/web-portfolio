@@ -795,7 +795,7 @@ section.visible {
     display: none !important;
 }
 
-#contact > div:has(.badge-base) {
+#contact>div:has(.badge-base) {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
 }
@@ -921,7 +921,19 @@ footer {
 
     main {
         padding: var(--spacing-lg) var(--spacing-sm);
-        padding-top: calc(var(--spacing-lg) + 120px);
+        padding-top: calc(var(--spacing-sm) + 110px);
+    }
+
+    #intro {
+        min-height: 60vh;
+    }
+
+    .profile-image {
+        margin-top: var(--spacing-lg);
+    }
+
+    .tagline {
+        margin-bottom: var(--spacing-md);
     }
 
     .profile-image img {
@@ -957,12 +969,6 @@ footer {
     }
 }
 
-@media (max-width: 768px) {
-    .badge-base {
-        transform: scale(0.8);
-        transform-origin: center;
-    }
-}
 
 @media (max-width: 480px) {
     .profile-image img {
