@@ -8,10 +8,10 @@
     --color-bg-card: #1a1a1a;
     --color-bg-card-hover: #1f1f1f;
 
-    --color-accent: #f59e0b;
-    --color-accent-light: #fbbf24;
-    --color-accent-dim: rgba(245, 158, 11, 0.15);
-    --color-accent-border: rgba(245, 158, 11, 0.25);
+    --color-accent: #a855f7;
+    --color-accent-light: #c084fc;
+    --color-accent-dim: rgba(168, 85, 247, 0.08);
+    --color-accent-border: rgba(168, 85, 247, 0.25);
 
     --color-text-primary: #f5f5f5;
     --color-text-secondary: #a3a3a3;
@@ -48,8 +48,8 @@
     /* Shadows */
     --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.4);
     --shadow-card-hover: 0 12px 40px rgba(0, 0, 0, 0.5);
-    --shadow-glow: 0 0 60px rgba(245, 158, 11, 0.08);
-    --shadow-button: 0 4px 20px rgba(245, 158, 11, 0.25);
+    --shadow-glow: 0 0 60px rgba(168, 85, 247, 0.08);
+    --shadow-button: 0 4px 20px rgba(168, 85, 247, 0.25);
 }
 
 /* ===================================
@@ -98,7 +98,7 @@ body {
 
 /* Selection styling */
 ::selection {
-    background: rgba(245, 158, 11, 0.3);
+    background: rgba(168, 85, 247, 0.3);
     color: var(--color-text-primary);
 }
 
@@ -288,6 +288,7 @@ section {
     display: flex;
     align-items: center;
     gap: 0.4rem;
+    min-height: 1.7em;
 }
 
 .tagline .typed-cursor {
@@ -332,7 +333,7 @@ section {
 
 .hero-cta .cta-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(245, 158, 11, 0.35);
+    box-shadow: 0 8px 30px rgba(168, 85, 247, 0.35);
 }
 
 .hero-cta .cta-secondary {
@@ -361,7 +362,7 @@ section {
     width: 340px;
     height: 340px;
     border-radius: var(--radius-xl);
-    background: radial-gradient(circle, rgba(245, 158, 11, 0.12) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.12) 0%, transparent 70%);
     filter: blur(40px);
     z-index: 0;
 }
@@ -382,7 +383,7 @@ section {
 .profile-image img:hover {
     transform: scale(1.02);
     border-color: var(--color-accent);
-    box-shadow: 0 0 80px rgba(245, 158, 11, 0.15);
+    box-shadow: 0 0 80px rgba(168, 85, 247, 0.15);
 }
 
 /* ===================================
@@ -566,7 +567,7 @@ section {
 }
 
 .skill-tags li:hover {
-    background: rgba(245, 158, 11, 0.2);
+    background: rgba(168, 85, 247, 0.2);
     border-color: var(--color-accent-border);
     color: var(--color-accent-light);
     transform: translateY(-1px);
@@ -626,7 +627,7 @@ section {
     border-color: var(--color-accent);
     color: #0c0c0c;
     transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
+    box-shadow: 0 8px 25px rgba(168, 85, 247, 0.3);
 }
 
 .contact-icon-label {
