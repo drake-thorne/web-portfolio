@@ -223,6 +223,21 @@ function initMagneticHover() {
     });
 }
 
+function initPagesDropdown() {
+    const wrapper = document.getElementById('pagesDropdown');
+    const btn = document.getElementById('pagesBtn');
+    const menu = document.getElementById('pagesMenu');
+    if (!wrapper || !btn || !menu) return;
+
+    const open = () => { menu.classList.add('open'); btn.classList.add('active'); btn.setAttribute('aria-expanded', 'true'); };
+    const close = () => { menu.classList.remove('open'); btn.classList.remove('active'); btn.setAttribute('aria-expanded', 'false'); };
+
+    btn.addEventListener('click', (e) => { e.stopPropagation(); menu.classList.contains('open') ? close() : open(); });
+    document.addEventListener('click', (e) => { if (!wrapper.contains(e.target)) close(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { close(); btn.focus(); } });
+    menu.querySelectorAll('a.pages-menu-item').forEach(item => item.addEventListener('click', close));
+}
+
 
 // RESUME PREVIEW MODAL
 
@@ -236,6 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollReveal();
     initScrollProgress();
     initSmartHeader();
+    initPagesDropdown();
 
     // Magnetic hover after a short delay to let layout settle
     setTimeout(initMagneticHover, 500);
