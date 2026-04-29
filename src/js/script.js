@@ -235,7 +235,17 @@ function initPagesDropdown() {
     btn.addEventListener('click', (e) => { e.stopPropagation(); menu.classList.contains('open') ? close() : open(); });
     document.addEventListener('click', (e) => { if (!wrapper.contains(e.target)) close(); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { close(); btn.focus(); } });
-    menu.querySelectorAll('a.pages-menu-item').forEach(item => item.addEventListener('click', close));
+    menu.querySelectorAll('a.pages-menu-item').forEach(item => {
+        item.addEventListener('click', () => {
+            menu.style.transition = 'opacity 0.1s ease';
+            menu.style.opacity = '0';
+            setTimeout(() => {
+                close();
+                menu.style.transition = '';
+                menu.style.opacity = '';
+            }, 100);
+        });
+    });
 }
 
 
