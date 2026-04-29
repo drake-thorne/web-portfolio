@@ -237,7 +237,7 @@ function initPagesDropdown() {
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { close(); btn.focus(); } });
     menu.querySelectorAll('a.pages-menu-item').forEach(item => {
         item.addEventListener('click', () => {
-            close();
+            menu.style.display = 'none';
         });
     });
 }
