@@ -1013,3 +1013,12 @@ footer {
     background: rgba(255,255,255,0.06);
     margin: 0.3rem 0.4rem;
 }
+
+@media (min-width: 769px) {
+    .pages-menu a[href="#about"],
+    .pages-menu a[href="#skills"],
+    .pages-menu a[href="#contact"],
+    .pages-menu .pages-menu-divider {
+        display: none;
+    }
+}
