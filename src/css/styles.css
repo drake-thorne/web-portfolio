@@ -1031,3 +1031,7 @@ footer {
     border-color: rgba(255, 255, 255, 0.08) !important;
     color: var(--color-text-muted) !important;
 }
+
+.pages-menu.no-transition {
+    transition: none !important;
+}
