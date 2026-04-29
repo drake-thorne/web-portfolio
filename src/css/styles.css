@@ -1022,3 +1022,7 @@ footer {
         display: none;
     }
 }
+
+.pages-btn:focus {
+    outline: none;
+}
