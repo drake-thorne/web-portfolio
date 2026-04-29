@@ -238,6 +238,8 @@ function initPagesDropdown() {
     menu.querySelectorAll('a.pages-menu-item').forEach(item => {
         item.addEventListener('click', () => {
             menu.style.display = 'none';
+            close();
+            btn.blur();
         });
     });
     window.addEventListener('pageshow', () => {
