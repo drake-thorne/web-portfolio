@@ -240,6 +240,9 @@ function initPagesDropdown() {
             menu.style.display = 'none';
         });
     });
+    window.addEventListener('pageshow', () => {
+        menu.style.display = '';
+    });
 }
 
 
