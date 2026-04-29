@@ -244,11 +244,12 @@ function initPagesDropdown() {
     });
     menu.querySelectorAll('a.pages-menu-item').forEach(item => {
         item.addEventListener('mousedown', () => {
-            close();       // 🔥 THIS is the key fix
-            btn.blur();
+            btn.blur();   // keep this
         });
 
         item.addEventListener('click', (e) => {
+            close();
+
             const href = item.getAttribute('href');
             if (href && !href.startsWith('#')) {
                 e.preventDefault();
