@@ -235,11 +235,27 @@ function initPagesDropdown() {
     btn.addEventListener('click', (e) => { e.stopPropagation(); menu.classList.contains('open') ? close() : open(); });
     document.addEventListener('click', (e) => { if (!wrapper.contains(e.target)) close(); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { close(); btn.focus(); } });
+    btn.addEventListener('mousedown', () => {
+        btn.blur();
+    });
     menu.querySelectorAll('a.pages-menu-item').forEach(item => {
-        item.addEventListener('click', () => {
-            menu.style.display = 'none';
+        item.addEventListener('mousedown', () => {
+            btn.blur();
+        });
+    });
+    menu.querySelectorAll('a.pages-menu-item').forEach(item => {
+        item.addEventListener('click', (e) => {
             close();
             btn.blur();
+
+            // small delay to let styles settle before navigation
+            const href = item.getAttribute('href');
+            if (href && !href.startsWith('#')) {
+                e.preventDefault();
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 50);
+            }
         });
     });
     window.addEventListener('pageshow', () => {

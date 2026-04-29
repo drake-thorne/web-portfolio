@@ -1024,15 +1024,11 @@ footer {
 }
 
 .pages-btn:focus,
-.pages-btn:focus-visible {
-    outline: none;
-    box-shadow: none;
-}
-.pages-btn:focus,
-.pages-btn:focus-visible {
-    outline: none;
-    box-shadow: none;
-    border-color: rgba(255, 255, 255, 0.08);
-    background: transparent;
-    color: var(--color-text-muted);
+.pages-btn:focus-visible,
+.pages-btn:active {
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+    color: var(--color-text-muted) !important;
 }
