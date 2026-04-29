@@ -1023,6 +1023,8 @@ footer {
     }
 }
 
-.pages-btn:focus {
+.pages-btn:focus,
+.pages-btn:focus-visible {
     outline: none;
+    box-shadow: none;
 }
