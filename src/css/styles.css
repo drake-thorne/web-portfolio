@@ -1028,3 +1028,11 @@ footer {
     outline: none;
     box-shadow: none;
 }
+.pages-btn:focus,
+.pages-btn:focus-visible {
+    outline: none;
+    box-shadow: none;
+    border-color: rgba(255, 255, 255, 0.08);
+    background: transparent;
+    color: var(--color-text-muted);
+}
