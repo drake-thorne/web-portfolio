@@ -243,19 +243,22 @@ function initPagesDropdown() {
         btn.blur();
     });
     menu.querySelectorAll('a.pages-menu-item').forEach(item => {
-        item.addEventListener('mousedown', () => {
-            btn.blur();   // keep this
-        });
-
         item.addEventListener('click', (e) => {
-            close();
-
             const href = item.getAttribute('href');
+
             if (href && !href.startsWith('#')) {
                 e.preventDefault();
-                setTimeout(() => {
+
+                // 🔥 INSTANT CLOSE (no transition)
+                menu.classList.remove('open');
+                btn.classList.remove('active');
+                btn.setAttribute('aria-expanded', 'false');
+                btn.blur();
+
+                // small delay to ensure DOM paints closed state
+                requestAnimationFrame(() => {
                     window.location.href = href;
-                }, 50);
+                });
             }
         });
     });
