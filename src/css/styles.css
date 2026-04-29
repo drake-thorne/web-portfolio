@@ -888,13 +888,12 @@ footer {
     white-space: nowrap;
 }
 
-.pages-btn:hover,
-.pages-btn.active {
+.pages-dropdown-wrapper .pages-menu.open ~ .pages-btn,
+.pages-btn:hover {
     color: var(--color-accent);
     border-color: var(--color-accent-border);
     background: var(--color-accent-dim);
 }
-
 .pages-btn svg {
     flex-shrink: 0;
     opacity: 0.7;
