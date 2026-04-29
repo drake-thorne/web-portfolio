@@ -227,67 +227,42 @@ function initPagesDropdown() {
     const wrapper = document.getElementById('pagesDropdown');
     const btn = document.getElementById('pagesBtn');
     const menu = document.getElementById('pagesMenu');
-
     if (!wrapper || !btn || !menu) return;
 
-    const open = () => {
-        menu.classList.add('open');
-        btn.classList.add('active');
-        btn.setAttribute('aria-expanded', 'true');
-    };
+    const open = () => { menu.classList.add('open'); btn.classList.add('active'); btn.setAttribute('aria-expanded', 'true'); };
+    const close = () => { menu.classList.remove('open'); btn.classList.remove('active'); btn.setAttribute('aria-expanded', 'false'); };
 
-    const close = () => {
-        menu.classList.remove('open');
-        btn.classList.remove('active');
-        btn.setAttribute('aria-expanded', 'false');
-    };
-
-    // Toggle dropdown
-    btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        menu.classList.contains('open') ? close() : open();
-    });
-
-    // Close on outside click
-    document.addEventListener('click', (e) => {
-        if (!wrapper.contains(e.target)) close();
-    });
-
-    // Escape key
+    btn.addEventListener('click', (e) => { e.stopPropagation(); menu.classList.contains('open') ? close() : open(); });
+    document.addEventListener('click', (e) => { if (!wrapper.contains(e.target)) close(); });
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') close();
+        if (e.key === 'Escape') {
+            close();
+        }
     });
-
-    // Kill focus glow
-    btn.addEventListener('mousedown', () => btn.blur());
-
-    // Menu items
+    btn.addEventListener('mousedown', () => {
+        btn.blur();
+    });
     menu.querySelectorAll('a.pages-menu-item').forEach(item => {
-        item.addEventListener('mousedown', () => btn.blur());
+        item.addEventListener('mousedown', () => {
+            btn.blur();   // keep this
+        });
 
         item.addEventListener('click', (e) => {
+            close();
+
             const href = item.getAttribute('href');
-
-            if (!href || href.startsWith('#')) return;
-
-            e.preventDefault();
-
-            // 🔥 INSTANT close (no animation)
-            menu.classList.remove('open');
-            btn.classList.remove('active');
-            btn.blur();
-
-            // 🔥 navigate next frame (prevents frozen animation)
-            requestAnimationFrame(() => {
-                window.location.href = href;
-            });
+            if (href && !href.startsWith('#')) {
+                e.preventDefault();
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 50);
+            }
         });
     });
-
-    // reset after navigation
     window.addEventListener('pageshow', () => {
         close();
         btn.blur();
+        btn.classList.remove('active');
     });
 }
 
