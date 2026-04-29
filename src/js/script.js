@@ -243,6 +243,7 @@ function initPagesDropdown() {
     window.addEventListener('pageshow', () => {
         menu.style.display = '';
         close();
+        btn.blur();
     });
 }
 
