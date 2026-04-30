@@ -271,6 +271,37 @@ function initPagesDropdown() {
 
 
 // ===================================
+// BLOG FILTERS
+// ===================================
+function initBlogFilters() {
+    const filterBtns = document.querySelectorAll('.blog-tag');
+    const posts = document.querySelectorAll('.blog-post');
+
+    if (!filterBtns.length || !posts.length) return;
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active class from all buttons
+            filterBtns.forEach(b => b.classList.remove('active'));
+            // Add active class to clicked button
+            btn.classList.add('active');
+
+            const filterValue = btn.getAttribute('data-filter').toLowerCase();
+
+            posts.forEach(post => {
+                const category = post.getAttribute('data-category').toLowerCase();
+
+                if (filterValue === 'all' || category === filterValue) {
+                    post.style.display = 'block';
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+        });
+    });
+}
+
+// ===================================
 // INITIALIZE ALL
 // ===================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -280,6 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollProgress();
     initSmartHeader();
     initPagesDropdown();
+    initBlogFilters();
 
     // Magnetic hover after a short delay to let layout settle
     setTimeout(initMagneticHover, 500);
