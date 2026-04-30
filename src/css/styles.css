@@ -709,7 +709,7 @@ footer {
     }
 
     .section-heading::after {
-        display: none;
+
     }
 
     .skills-grid {
@@ -740,7 +740,7 @@ footer {
     }
 
     nav>ul {
-        display: none;
+
     }
 
     nav ul li a {
@@ -750,7 +750,7 @@ footer {
     }
 
     .nav-divider {
-        display: none;
+
     }
 
     .pages-dropdown-wrapper {
@@ -811,7 +811,7 @@ footer {
     }
 
     .section-heading::after {
-        display: none;
+
     }
 
     section {
@@ -1023,11 +1023,12 @@ footer {
 
 @media (min-width: 769px) {
 
-    .pages-menu a[href$="#about"],
-    .pages-menu a[href$="#skills"],
-    .pages-menu a[href$="#contact"],
-    .pages-menu .pages-menu-divider {
+    .pages-dropdown-wrapper, .nav-divider {
         display: none;
+
+    }
+    
+
     }
 }
 
