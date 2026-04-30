@@ -1014,9 +1014,9 @@ footer {
 }
 
 @media (min-width: 769px) {
-    .pages-menu a[href="#about"],
-    .pages-menu a[href="#skills"],
-    .pages-menu a[href="#contact"],
+    .pages-menu a[href$="#about"],
+    .pages-menu a[href$="#skills"],
+    .pages-menu a[href$="#contact"],
     .pages-menu .pages-menu-divider {
         display: none;
     }
