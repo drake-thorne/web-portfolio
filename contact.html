@@ -11,12 +11,10 @@
     <link rel="apple-touch-icon" href="src/images/favicon.png">
     <meta name="theme-color" content="#0c0c0c">
 
-    <meta name="description"
-        content="Thoughts on network automation, Ansible, Kubernetes and things learned on the job.">
-    <meta property="og:title" content="Blog — Drake Thorne">
-    <meta property="og:description"
-        content="Thoughts on network automation, Ansible, Kubernetes and things learned on the job.">
-    <meta property="og:url" content="https://drakethorne.com/blog">
+    <meta name="description" content="Get in touch with Drake Thorne — send a message directly.">
+    <meta property="og:title" content="Contact — Drake Thorne">
+    <meta property="og:description" content="Get in touch with Drake Thorne — send a message directly.">
+    <meta property="og:url" content="https://drakethorne.com/contact">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,15 +31,14 @@
 
     <div class="container">
         <header>
-                                    <nav>
+            <nav>
                 <a href="https://drakethorne.com" class="logo">
                     <img src="/src/images/favicon.png" alt="Logo">
                     <span>drakethorne</span>
                 </a>
                 <ul>
                     <li><a href="/blog">Blog</a></li>
-                    <li><a href="/projects">Projects</a></li>
-                    <li><a href="/resume" target="_blank" rel="noopener noreferrer">Resume</a></li>
+                    <li><span class="nav-soon">Projects <span class="nav-soon-badge">soon</span></span></li>
                     <li><a href="/contact">Contact</a></li>
                 </ul>
 
@@ -76,10 +73,6 @@
                             <span class="pages-menu-label">Projects</span>
                             <span class="pages-soon-badge">soon</span>
                         </div>
-                        <a href="/resume" target="_blank" rel="noopener noreferrer" class="pages-menu-item">
-                            <span class="pages-menu-icon"><i class="fas fa-file-alt"></i></span>
-                            <span class="pages-menu-label">Resume</span>
-                        </a>
                         <a href="/contact" class="pages-menu-item" role="menuitem">
                             <span class="pages-menu-icon"><i class="fas fa-envelope"></i></span>
                             <span class="pages-menu-label">Contact</span>
@@ -87,45 +80,49 @@
                     </div>
                 </div>
             </nav>
-
-
         </header>
 
-        <main class="contact-main"
-            style="padding-top: 150px; min-height: 70vh; display: flex; flex-direction: column; align-items: center; text-align: center;">
-            <section id="contact" class="reveal visible">
-                <div class="section-heading" style="justify-content: center;">
-                    <h2>Let's work together</h2>
+        <main class="blog-main">
+            <section class="blog-hero reveal visible">
+                <div class="blog-hero-text" style="text-align: center; align-items: center;">
+                    <h1>Get in touch<span class="highlight">.</span></h1>
+                    <p class="blog-description" style="margin: 0 auto;">Have a question or want to work together? Send
+                        me a message.</p>
                 </div>
-                <p class="contact-subtitle reveal-child visible" style="max-width: 600px; margin: 0 auto 40px auto;">
-                    Feel free to reach out — I'm always open to discussing new
-                    opportunities and ideas.</p>
-                <div class="contact-icons reveal-child visible" style="justify-content: center;">
-                    <a href="https://github.com/drake-thorne" target="_blank" rel="noopener noreferrer"
-                        class="contact-icon" aria-label="GitHub">
-                        <i class="fab fa-github"></i>
-                        <span class="contact-icon-label">GitHub</span>
-                    </a>
-                    <a href="https://linkedin.com/in/drakethorne" target="_blank" rel="noopener noreferrer"
-                        class="contact-icon" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin-in"></i>
-                        <span class="contact-icon-label">LinkedIn</span>
-                    </a>
-                    <a href="mailto:contact@drakethorne.com" target="_blank" rel="noopener noreferrer"
-                        class="contact-icon" aria-label="Email">
-                        <i class="fas fa-envelope"></i>
-                        <span class="contact-icon-label">Email</span>
-                    </a>
-                    <a href="/resume" target="_blank" rel="noopener noreferrer" class="contact-icon">
-                        <i class="fas fa-file-alt"></i>
-                        <span class="contact-icon-label">Resume</span>
-                    </a>
-                </div>
+            </section>
+
+            <section class="contact-form-section reveal visible">
+                <form class="contact-form" action="https://formsubmit.co/contact@drakethorne.com" method="POST">
+                    <input type="hidden" name="_subject" value="New message from drakethorne.com">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://drakethorne.com/contact?sent=true">
+
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Your name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="you@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="6" required
+                            placeholder="What's on your mind?"></textarea>
+                    </div>
+
+                    <button type="submit" class="contact-submit">
+                        <span>Send message</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
             </section>
         </main>
 
         <footer>
-            <p>&copy; 2025 Drake Thorne. All rights reserved.</p>
+            <p>&copy; 2024 Drake Thorne. All rights reserved.</p>
         </footer>
     </div>
 
