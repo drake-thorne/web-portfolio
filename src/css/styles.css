@@ -252,7 +252,7 @@ section {
     grid-template-columns: 1fr 1fr;
     align-items: center;
     gap: var(--spacing-xl);
-    padding: var(--spacing-xl) 0;
+    padding: var(--spacing-lg) 0 var(--spacing-sm) 0;
 }
 
 .hero-text {
@@ -591,7 +591,7 @@ section {
    =================================== */
 #contact {
     text-align: center;
-    padding: var(--spacing-xl) 0;
+    padding: var(--spacing-lg) 0 var(--spacing-sm) 0;
 }
 
 .contact-subtitle {
@@ -1290,4 +1290,21 @@ footer {
 
 .contact-submit i {
     font-size: 0.85rem;
+}
+/* Contact form nudge link */
+.contact-form-nudge {
+    margin-top: 24px;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+}
+
+.contact-form-nudge a {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s ease;
+}
+
+.contact-form-nudge a:hover {
+    opacity: 0.8;
 }
