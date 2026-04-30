@@ -1035,3 +1035,136 @@ footer {
 .pages-menu.no-transition {
     transition: none !important;
 }
+/* =========================================
+   Blog Styles
+   ========================================= */
+
+.blog-main {
+    padding-top: 120px;
+}
+
+.blog-hero {
+    margin-bottom: 40px;
+}
+
+.blog-hero-text h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.blog-description {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+.blog-filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.blog-tag {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.blog-tag:hover {
+    border-color: var(--accent-color);
+    color: var(--text-primary);
+}
+
+.blog-tag.active {
+    background: var(--accent-color);
+    color: #000;
+    border-color: var(--accent-color);
+}
+
+.blog-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-post {
+    border-bottom: 1px solid var(--border-color);
+    padding: 30px 0;
+    transition: all 0.3s ease;
+}
+
+.blog-post:last-child {
+    border-bottom: none;
+}
+
+.blog-post-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.blog-post-link:hover .blog-post-title {
+    color: var(--accent-color);
+}
+
+.blog-post-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.blog-post-cat {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: rgba(245, 158, 11, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.blog-post-date {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.blog-post-title {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+    transition: color 0.3s ease;
+}
+
+.blog-post-excerpt {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.blog-empty {
+    text-align: center;
+    padding: 60px 0;
+    color: var(--text-secondary);
+}
+
+.blog-empty-icon {
+    font-size: 2rem;
+    margin-bottom: 16px;
+    display: block;
+    color: var(--border-color);
+}
+
+.blog-empty-sub {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
