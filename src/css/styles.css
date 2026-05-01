@@ -708,7 +708,7 @@ footer {
         height: 280px;
     }
 
-    .section-heading::after {}
+
 
     .skills-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -737,7 +737,7 @@ footer {
         gap: 0;
     }
 
-    nav>ul {}
+
 
     nav ul li a {
         font-size: 0.72rem;
@@ -745,7 +745,7 @@ footer {
         color: #555;
     }
 
-    .nav-divider {}
+
 
     .pages-dropdown-wrapper {
         width: auto;
@@ -804,7 +804,7 @@ footer {
         gap: 0.3rem;
     }
 
-    .section-heading::after {}
+
 
     section {
         margin-bottom: var(--spacing-xl);
@@ -1018,11 +1018,7 @@ footer {
     .pages-dropdown-wrapper,
     .nav-divider {
         display: none;
-
     }
-
-
-}
 }
 
 .pages-btn:focus,
@@ -1057,7 +1053,7 @@ footer {
 }
 
 .blog-description {
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
     font-size: 1.1rem;
     max-width: 600px;
     line-height: 1.6;
@@ -1101,7 +1097,7 @@ footer {
 }
 
 .blog-post {
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--color-border);
     padding: 30px 0;
     transition: all 0.3s ease;
 }
@@ -1117,7 +1113,7 @@ footer {
 }
 
 .blog-post-link:hover .blog-post-title {
-    color: var(--accent-color);
+    color: var(--color-accent);
 }
 
 .blog-post-meta {
@@ -1128,9 +1124,9 @@ footer {
 }
 
 .blog-post-cat {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-mono);
     font-size: 0.8rem;
-    color: var(--accent-color);
+    color: #f59e0b;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     background: rgba(245, 158, 11, 0.1);
@@ -1139,20 +1135,20 @@ footer {
 }
 
 .blog-post-date {
-    font-family: 'Outfit', sans-serif;
+    font-family: var(--font-body);
     font-size: 0.9rem;
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
 }
 
 .blog-post-title {
     font-size: 1.5rem;
     margin-bottom: 8px;
-    color: var(--text-primary);
+    color: var(--color-text-primary);
     transition: color 0.3s ease;
 }
 
 .blog-post-excerpt {
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
     font-size: 1rem;
     line-height: 1.5;
 }
@@ -1160,14 +1156,14 @@ footer {
 .blog-empty {
     text-align: center;
     padding: 60px 0;
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
 }
 
 .blog-empty-icon {
     font-size: 2rem;
     margin-bottom: 16px;
     display: block;
-    color: var(--border-color);
+    color: var(--color-border);
 }
 
 .blog-empty-sub {
@@ -1273,10 +1269,10 @@ footer {
     background: var(--color-accent);
     color: #000;
     border: none;
-    padding: 12px 24px;
+    padding: 0.6rem 1.4rem;
     border-radius: 8px;
     font-family: var(--font-mono);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -1312,4 +1308,148 @@ footer {
 
 .contact-icons {
     margin-bottom: var(--spacing-lg);
+}
+
+/* =========================================
+   BLOG POST HOVER EFFECTS
+   ========================================= */
+
+.blog-post {
+    transition: opacity var(--transition-fast);
+}
+
+.blog-post:hover {
+    opacity: 0.7;
+}
+
+.blog-post-link:hover .blog-post-title {
+    color: var(--color-accent);
+}
+
+/* Blog post read indicator arrow */
+.blog-post-link {
+    position: relative;
+}
+
+.blog-post-link::after {
+    content: '→';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) translateX(-8px);
+    font-size: 1.2rem;
+    color: var(--color-accent);
+    opacity: 0;
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.blog-post-link:hover::after {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+/* =========================================
+   BLOG ARTICLE CONTENT STYLING
+   ========================================= */
+
+.blog-post-meta--article {
+    justify-content: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.blog-article-content {
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.blog-article-content p {
+    margin-bottom: 20px;
+}
+
+.blog-article-content pre {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: var(--radius-sm);
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+.blog-article-content code {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: #e2e8f0;
+}
+
+.blog-article-content a {
+    color: var(--color-accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-accent-border);
+    transition: border-color var(--transition-fast);
+}
+
+.blog-article-content a:hover {
+    border-bottom-color: var(--color-accent);
+}
+
+/* =========================================
+   ENHANCED CONTACT FORM ANIMATIONS
+   ========================================= */
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--color-accent);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.1), 0 0 20px rgba(168, 85, 247, 0.05);
+}
+
+.contact-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(168, 85, 247, 0.35);
+}
+
+/* =========================================
+   STAGGERED ENTRANCE ANIMATIONS
+   ========================================= */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Blog listing stagger */
+.blog-post:nth-child(1) { animation: fadeInUp 0.6s var(--ease-out-expo) 0.1s both; }
+.blog-post:nth-child(2) { animation: fadeInUp 0.6s var(--ease-out-expo) 0.2s both; }
+.blog-post:nth-child(3) { animation: fadeInUp 0.6s var(--ease-out-expo) 0.3s both; }
+.blog-post:nth-child(4) { animation: fadeInUp 0.6s var(--ease-out-expo) 0.4s both; }
+.blog-post:nth-child(5) { animation: fadeInUp 0.6s var(--ease-out-expo) 0.5s both; }
+.blog-post:nth-child(6) { animation: fadeInUp 0.6s var(--ease-out-expo) 0.6s both; }
+
+/* Contact form stagger */
+.contact-form .form-group:nth-child(1) { animation: fadeInUp 0.5s var(--ease-out-expo) 0.15s both; }
+.contact-form .form-group:nth-child(2) { animation: fadeInUp 0.5s var(--ease-out-expo) 0.25s both; }
+.contact-form .form-group:nth-child(3) { animation: fadeInUp 0.5s var(--ease-out-expo) 0.35s both; }
+.contact-form .contact-submit { animation: fadeInUp 0.5s var(--ease-out-expo) 0.45s both; }
+
+@keyframes shimmer {
+    0%, 100% { background-position: 0% center; }
+    50% { background-position: 200% center; }
 }

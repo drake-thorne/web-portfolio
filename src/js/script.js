@@ -35,7 +35,16 @@ function initDotGrid() {
         }
     }
 
+    let lastFrameTime = 0;
+    const FRAME_INTERVAL = 1000 / 30; // Cap at 30fps — smooth enough for subtle pulse
+
     function draw(time) {
+        animationFrame = requestAnimationFrame(draw);
+
+        const delta = time - lastFrameTime;
+        if (delta < FRAME_INTERVAL) return;
+        lastFrameTime = time - (delta % FRAME_INTERVAL);
+
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         dots.forEach(dot => {
@@ -46,9 +55,16 @@ function initDotGrid() {
             ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
             ctx.fill();
         });
-
-        animationFrame = requestAnimationFrame(draw);
     }
+
+    // Pause animation when tab is hidden to save CPU/battery
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            cancelAnimationFrame(animationFrame);
+        } else {
+            animationFrame = requestAnimationFrame(draw);
+        }
+    });
 
     window.addEventListener('resize', resize);
     resize();
@@ -266,8 +282,6 @@ function initPagesDropdown() {
     });
 }
 
-
-// RESUME PREVIEW MODAL
 
 
 // ===================================
