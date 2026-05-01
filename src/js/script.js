@@ -64,7 +64,7 @@ function initTypedText() {
 
     const phrases = [
         'Networking & DevOps specialist.',
-        'Network automation enthusiast.',
+        'Network automation engineer.',
         'Platform reliability engineer.',
         'Infrastructure as Code expert.'
     ];
