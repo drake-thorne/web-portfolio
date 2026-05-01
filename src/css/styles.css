@@ -1188,6 +1188,7 @@ footer {
     cursor: default;
     display: flex;
     align-items: center;
+    line-height: 1;
     gap: 6px;
     letter-spacing: 0.02em;
 }
