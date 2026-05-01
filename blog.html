@@ -26,6 +26,17 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="src/css/styles.css">
+
+    <!-- Prefetch nav pages for instant navigation -->
+    <link rel="prefetch" href="/">
+    <link rel="prefetch" href="/contact">
+    <script type="speculationrules">
+    {
+      "prerender": [
+        { "urls": ["/", "/contact"] }
+      ]
+    }
+    </script>
 </head>
 
 <body>
