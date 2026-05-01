@@ -1308,3 +1308,7 @@ footer {
 .contact-form-nudge a:hover {
     opacity: 0.8;
 }
+
+.contact-icons {
+    margin-bottom: var(--spacing-lg);
+}

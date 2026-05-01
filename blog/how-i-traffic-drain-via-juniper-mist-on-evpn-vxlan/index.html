@@ -4,19 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog — Drake Thorne</title>
+    <title>How I Automated AWS ECR Token Refreshes</title>
 
-    <link rel="icon" href="src/images/favicon.png" sizes="any">
-    <link rel="icon" type="image/png" sizes="32x32" href="src/images/favicon.png">
-    <link rel="apple-touch-icon" href="src/images/favicon.png">
+    <link rel="icon" href="../../src/images/favicon.png" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../src/images/favicon.png">
+    <link rel="apple-touch-icon" href="../../src/images/favicon.png">
     <meta name="theme-color" content="#0c0c0c">
 
-    <meta name="description"
-        content="Thoughts on network automation, Ansible, Kubernetes and things learned on the job.">
-    <meta property="og:title" content="Blog — Drake Thorne">
+    <meta name="description" content="On Le Kubernetes">
+    <meta property="og:title" content="Cron Jobs and Init Containers">
     <meta property="og:description"
-        content="Thoughts on network automation, Ansible, Kubernetes and things learned on the job.">
-    <meta property="og:url" content="https://drakethorne.com/blog">
+        content="How I automated AWS ECR token refreshes using Cron Jobs and Init Containers.">
+    <meta property="og:url"
+        content="https://drakethorne.com/blog/how-i-automated-amazon-elastic-container-registry-token-refreshes">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +24,7 @@
         href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="src/css/styles.css">
+    <link rel="stylesheet" href="../../src/css/styles.css">
 </head>
 
 <body>
@@ -89,61 +89,31 @@
         <main class="blog-main">
             <section class="blog-hero reveal visible">
                 <div class="blog-hero-text">
-                    <span class="hero-label">Writing</span>
-                    <h1>Blog<span class="highlight">.</span></h1>
-                    <p class="blog-description">Thoughts from the day job and things I've learned along the way.</p>
+                    <div class="blog-post-meta" style="justify-content: flex-start; gap: 15px; margin-bottom: 20px;">
+                        <span class="blog-post-cat">NETWORKING</span>
+                        <span class="blog-post-date">May 01, 2026</span>
+                    </div>
+                    <h1>How I traffic drain via Juniper Mist on EVPN-VXLAN</h1>
+                    <p class="blog-description">Best way to drain BGP traffic on an EVPN-VXLAN fabric.</p>
                 </div>
             </section>
 
             <section class="blog-content reveal visible">
-                <!-- Filter Tags -->
-                <div class="blog-filters">
-                    <button class="blog-tag active" data-filter="all">All</button>
-                    <button class="blog-tag" data-filter="ansible">Ansible</button>
-                    <button class="blog-tag" data-filter="kubernetes">Kubernetes</button>
-                    <button class="blog-tag" data-filter="networking">Networking</button>
-                </div>
-
-                <!-- Post List -->
-                <div class="blog-list" id="blogList">
-                    
-                    <article class="blog-post reveal-child visible" data-category="NETWORKING">
-                        <a href="/blog/how-i-automated-amazon-elastic-container-registry-token-refreshes"
-                            class="blog-post-link">
-                            <div class="blog-post-meta">
-                                <span class="blog-post-cat">NETWORKING</span>
-                                <span class="blog-post-date">May 01, 2026</span>
-                            </div>
-                            <h2 class="blog-post-title">How I traffic drain via Juniper Mist on EVPN-VXLAN</h2>
-                            <p class="blog-post-excerpt">Best way to drain BGP traffic on an EVPN-VXLAN fabric.
-                            </p>
-                        </a>
-                    </article>
-
-                    <article class="blog-post reveal-child visible" data-category="Kubernetes">
-                        <a href="/blog/how-i-automated-amazon-elastic-container-registry-token-refreshes"
-                            class="blog-post-link">
-                            <div class="blog-post-meta">
-                                <span class="blog-post-cat">KUBERNETES</span>
-                                <span class="blog-post-date">Apr 30, 2026</span>
-                            </div>
-                            <h2 class="blog-post-title">How I automated Amazon Elastic Container Registry token
-                                refreshes</h2>
-                            <p class="blog-post-excerpt">The easiest way to interact with AWS ECR via API.
-                            </p>
-                        </a>
-                    </article>
-
+                <div style="color: var(--text-secondary); line-height: 1.8; font-size: 1.1rem;">
+                    <p style="margin-bottom: 20px;">I'll write more on this later lol</p>
+                    <pre
+                        style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; overflow-x: auto; margin-bottom: 20px;"><code style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: #e2e8f0;"># CLI commands go here
+echo "Hello World"</code></pre>
                 </div>
             </section>
         </main>
 
         <footer>
-            <p>&copy; 2024 Drake Thorne. All rights reserved.</p>
+            <p>&copy; 2026 Drake Thorne. All rights reserved.</p>
         </footer>
     </div>
 
-    <script src="src/js/script.js"></script>
+    <script src="../../src/js/script.js"></script>
 </body>
 
 </html>
