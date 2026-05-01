@@ -522,7 +522,7 @@ section {
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, var(--color-accent), transparent);
+    background: var(--color-accent);
     opacity: 0;
     transition: var(--transition-base);
 }
