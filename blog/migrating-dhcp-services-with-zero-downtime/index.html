@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Migrating DHCP Services with Zero Downtime</title>
+
+    <link rel="icon" href="../../src/images/favicon.png" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../src/images/favicon.png">
+    <link rel="apple-touch-icon" href="../../src/images/favicon.png">
+    <meta name="theme-color" content="#0c0c0c">
+
+    <meta name="description" content="A walkthrough of how I set up AWS ECR authentication for Kubernetes clusters.">
+    <meta property="og:title" content="Migrating DHCP Services with Zero Downtime">
+    <meta property="og:description"
+        content="A walkthrough of how I set up AWS ECR authentication for Kubernetes clusters.">
+    <meta property="og:url"
+        content="https://drakethorne.com/blog/migrating-dhcp-services-with-zero-downtime">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../../src/css/styles.css">
+</head>
+
+<body>
+    <canvas id="dot-grid"></canvas>
+    <div class="scroll-progress"></div>
+
+    <div class="container">
+        <header>
+            <nav>
+                <a href="https://drakethorne.com" class="logo">
+                    <img src="/src/images/favicon.png" alt="Logo">
+                    <span>drakethorne</span>
+                </a>
+                <ul>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><span class="nav-soon">Projects <span class="nav-soon-badge">soon</span></span></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+
+                <div class="nav-divider"></div>
+                <div class="pages-dropdown-wrapper" id="pagesDropdown">
+                    <button class="pages-btn" id="pagesBtn" aria-haspopup="true" aria-expanded="false">
+                        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <rect x="1" y="2" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.4" />
+                            <rect x="9" y="2" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.4" />
+                            <rect x="1" y="10" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.4" />
+                            <rect x="9" y="10" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.4" />
+                        </svg>
+                        Menu
+                        <svg class="pages-chevron" width="10" height="10" viewBox="0 0 12 12" fill="none"
+                            aria-hidden="true">
+                            <path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <div class="pages-menu" id="pagesMenu" role="menu">
+                        <a href="/" class="pages-menu-item" role="menuitem">
+                            <span class="pages-menu-icon"><i class="fas fa-house"></i></span>
+                            <span class="pages-menu-label">Home</span>
+                        </a>
+                        <a href="/blog" class="pages-menu-item" role="menuitem">
+                            <span class="pages-menu-icon"><i class="fas fa-pen-nib"></i></span>
+                            <span class="pages-menu-label">Blog</span>
+                        </a>
+                        <div class="pages-menu-item pages-menu-item--soon" role="menuitem" aria-disabled="true">
+                            <span class="pages-menu-icon"><i class="fas fa-folder-open"></i></span>
+                            <span class="pages-menu-label">Projects</span>
+                            <span class="pages-soon-badge">soon</span>
+                        </div>
+                        <a href="/contact" class="pages-menu-item" role="menuitem">
+                            <span class="pages-menu-icon"><i class="fas fa-envelope"></i></span>
+                            <span class="pages-menu-label">Contact</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+
+
+        </header>
+
+        <main class="blog-main">
+            <section class="blog-hero reveal visible">
+                <div class="blog-hero-text">
+                    <div class="blog-post-meta" style="justify-content: flex-start; gap: 15px; margin-bottom: 20px;">
+                        <span class="blog-post-cat">NETWORKING</span>
+                        <span class="blog-post-date">Apr 30, 2026</span>
+                    </div>
+                    <h1>Migrating DHCP Services with Zero Downtime</h1>
+                    <p class="blog-description">A guide to migrating DHCP services while maintaining network connectivity.</p>
+                </div>
+            </section>
+
+            <section class="blog-content reveal visible">
+                <div style="color: var(--text-secondary); line-height: 1.8; font-size: 1.1rem;">
+                    <p style="margin-bottom: 20px;">I'll write more on this later lol</p>
+                    <pre
+                        style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; overflow-x: auto; margin-bottom: 20px;"><code style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: #e2e8f0;"># CLI commands go here
+echo "Hello World"</code></pre>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Drake Thorne. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="../../src/js/script.js"></script>
+</body>
+
+</html>
