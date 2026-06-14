@@ -172,7 +172,11 @@ nav>ul {
 }
 
 .logo:hover {
-    opacity: 0.8;
+    opacity: 1;
+}
+
+.logo:hover span {
+    color: var(--color-accent);
 }
 
 nav ul {
@@ -738,6 +742,10 @@ footer {
     }
 
 
+
+    nav ul {
+        display: none;
+    }
 
     nav ul li a {
         font-size: 0.72rem;
