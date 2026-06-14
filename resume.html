@@ -7,180 +7,31 @@
   <meta name="description" content="View Drake Thorne's resume – Network Platform Engineer specializing in networking and DevOps.">
   <link rel="icon" href="/src/images/favicon.png" sizes="any">
   <link rel="apple-touch-icon" href="/src/images/favicon.png">
-  <meta name="theme-color" content="#0c0c0c">
+  <meta name="theme-color" content="#525659">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; overflow: hidden; background: #525659; }
 
-    html, body {
-      height: 100%;
-      overflow: hidden;
-      background: #525659;
-    }
-
-    body {
-      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* ── Toolbar ── */
-    .toolbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 8px 16px;
-      background: #323639;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-      flex-shrink: 0;
-      z-index: 10;
-    }
-
-    .toolbar-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .toolbar-logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      color: rgba(255, 255, 255, 0.8);
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: color 0.2s;
-    }
-
-    .toolbar-logo:hover {
-      color: #a855f7;
-    }
-
-    .toolbar-logo img {
-      width: 22px;
-      height: 22px;
-      border-radius: 4px;
-    }
-
-    .toolbar-divider {
-      width: 1px;
-      height: 18px;
-      background: rgba(255, 255, 255, 0.12);
-    }
-
-    .toolbar-title {
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.4);
-    }
-
-    .toolbar-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 12px;
-      border-radius: 6px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(255, 255, 255, 0.06);
-      color: rgba(255, 255, 255, 0.8);
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 500;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .btn:hover {
-      background: rgba(168, 85, 247, 0.12);
-      border-color: rgba(168, 85, 247, 0.3);
-      color: #a855f7;
-    }
-
-    .btn i {
-      font-size: 0.75rem;
-    }
-
-    /* ── PDF Embed ── */
     .pdf-frame {
-      flex: 1;
       width: 100%;
+      height: 100%;
       border: none;
-    }
-
-    /* ── Mobile ── */
-    @media (max-width: 640px) {
-      .toolbar-title,
-      .toolbar-divider {
-        display: none;
-      }
-
-      .btn span {
-        display: none;
-      }
-
-      .btn {
-        padding: 7px 9px;
-      }
     }
   </style>
 </head>
 
 <body>
-  <!-- Toolbar -->
-  <div class="toolbar">
-    <div class="toolbar-left">
-      <a href="/" class="toolbar-logo">
-        <img src="/src/images/favicon.png" alt="Logo">
-        <span>drakethorne</span>
-      </a>
-      <div class="toolbar-divider"></div>
-      <span class="toolbar-title">Resume</span>
-    </div>
-    <div class="toolbar-actions">
-      <a href="/resume-file/resume.pdf" download class="btn" aria-label="Download Resume PDF">
-        <i class="fas fa-download"></i>
-        <span>Download</span>
-      </a>
-    </div>
-  </div>
-
-  <!-- PDF: native browser embed (Chrome/Firefox/Edge built-in viewer) -->
-  <embed id="pdfViewer" src="/resume-file/resume.pdf" type="application/pdf" class="pdf-frame">
+  <embed src="/resume-file/resume.pdf" type="application/pdf" class="pdf-frame">
 
   <script>
-    // Mobile browsers (especially iOS Safari) don't support inline PDF embed.
-    // Redirect them to the raw PDF URL, which their native viewer handles
-    // perfectly — with text selection, scrolling, and download support.
-    (function () {
-      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
-        || (navigator.maxTouchPoints > 1 && window.innerWidth < 1024);
-
-      if (isMobile) {
-        window.location.replace('/resume-file/resume.pdf');
-      }
-    })();
+    // Mobile browsers don't support inline PDF embed.
+    // Redirect to the raw PDF — their native viewer handles it perfectly.
+    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+      || (navigator.maxTouchPoints > 1 && window.innerWidth < 1024)) {
+      window.location.replace('/resume-file/resume.pdf');
+    }
   </script>
 </body>
 
