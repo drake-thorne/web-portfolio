@@ -2,11 +2,25 @@
 <html lang="en">
 
 <head>
+  <meta charset="UTF-8">
   <title>Resume – Drake Thorne</title>
+  <meta name="description" content="View Drake Thorne's resume – Network Platform Engineer specializing in networking and DevOps.">
   <link rel="icon" href="/src/images/favicon.png" sizes="any">
   <link rel="apple-touch-icon" href="/src/images/favicon.png">
   <meta name="theme-color" content="#0c0c0c">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- PDF.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs" type="module"></script>
+
   <style>
     * {
       margin: 0;
@@ -14,36 +28,323 @@
       box-sizing: border-box;
     }
 
-    html,
-    body {
+    html, body {
       margin: 0;
       padding: 0;
+      height: 100%;
     }
 
     body {
-      width: 100%;
-      background: white;
+      font-family: 'Outfit', sans-serif;
+      background: #111111;
+      color: #e0e0e0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
-    iframe {
+    /* ── Toolbar ── */
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 24px;
+      background: rgba(12, 12, 12, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .toolbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: #e0e0e0;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .toolbar-logo:hover {
+      color: #f59e0b;
+    }
+
+    .toolbar-logo img {
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+    }
+
+    .toolbar-divider {
+      width: 1px;
+      height: 18px;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .toolbar-title {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .page-info {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.4);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.04);
+      color: #e0e0e0;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      background: rgba(245, 158, 11, 0.12);
+      border-color: rgba(245, 158, 11, 0.25);
+      color: #f59e0b;
+    }
+
+    .btn i {
+      font-size: 0.78rem;
+    }
+
+    /* ── PDF Container ── */
+    .pdf-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 16px 48px;
+      gap: 24px;
+    }
+
+    .pdf-page-wrapper {
+      width: 100%;
+      max-width: 800px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.04);
+      background: #fff;
+    }
+
+    .pdf-page-wrapper canvas {
+      display: block;
       width: 100%;
       height: auto;
-      border: none;
-      display: block;
-      aspect-ratio: 8.5 / 11;
     }
 
-    @media (max-width: 768px) {
-      iframe {
-        aspect-ratio: auto;
-        min-height: 200vh;
+    /* ── Loading State ── */
+    .loading-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 80px 20px;
+      flex: 1;
+    }
+
+    .spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid rgba(245, 158, 11, 0.15);
+      border-top-color: #f59e0b;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .loading-text {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* ── Error State ── */
+    .error-state {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .error-state i {
+      font-size: 2rem;
+      color: rgba(255, 255, 255, 0.15);
+    }
+
+    .error-state p {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.95rem;
+      max-width: 360px;
+    }
+
+    .error-state .btn {
+      margin-top: 8px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .toolbar {
+        padding: 8px 14px;
+      }
+
+      .toolbar-title {
+        display: none;
+      }
+
+      .toolbar-divider {
+        display: none;
+      }
+
+      .btn span {
+        display: none;
+      }
+
+      .btn {
+        padding: 8px 10px;
+      }
+
+      .pdf-container {
+        padding: 16px 8px 32px;
+        gap: 16px;
+      }
+
+      .pdf-page-wrapper {
+        border-radius: 4px;
       }
     }
   </style>
 </head>
 
 <body>
-  <iframe src="/resume-file/resume.pdf"></iframe>
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <div class="toolbar-left">
+      <a href="/" class="toolbar-logo">
+        <img src="/src/images/favicon.png" alt="Logo">
+        <span>drakethorne</span>
+      </a>
+      <div class="toolbar-divider"></div>
+      <span class="toolbar-title">Resume</span>
+    </div>
+    <div class="toolbar-actions">
+      <span class="page-info" id="pageInfo"></span>
+      <a href="/resume-file/resume.pdf" download class="btn" id="downloadBtn" aria-label="Download Resume PDF">
+        <i class="fas fa-download"></i>
+        <span>Download</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading-state" id="loadingState">
+    <div class="spinner"></div>
+    <span class="loading-text">Loading resume…</span>
+  </div>
+
+  <!-- Error -->
+  <div class="error-state" id="errorState">
+    <i class="fas fa-file-circle-exclamation"></i>
+    <p>Couldn't load the resume. You can download it directly instead.</p>
+    <a href="/resume-file/resume.pdf" download class="btn">
+      <i class="fas fa-download"></i>
+      <span>Download PDF</span>
+    </a>
+  </div>
+
+  <!-- PDF Pages -->
+  <div class="pdf-container" id="pdfContainer" style="display: none;"></div>
+
+  <script type="module">
+    const PDF_URL = '/resume-file/resume.pdf';
+    const SCALE_DESKTOP = 2;    // High-res rendering
+    const SCALE_MOBILE = 2;
+    const MOBILE_BP = 640;
+
+    const loadingEl = document.getElementById('loadingState');
+    const errorEl = document.getElementById('errorState');
+    const containerEl = document.getElementById('pdfContainer');
+    const pageInfoEl = document.getElementById('pageInfo');
+
+    async function renderPDF() {
+      try {
+        const pdfjsLib = await import('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs');
+
+        pdfjsLib.GlobalWorkerOptions.workerSrc =
+          'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs';
+
+        const pdf = await pdfjsLib.getDocument(PDF_URL).promise;
+        const totalPages = pdf.numPages;
+
+        pageInfoEl.textContent = `${totalPages} page${totalPages !== 1 ? 's' : ''}`;
+
+        // Render every page
+        for (let i = 1; i <= totalPages; i++) {
+          const page = await pdf.getPage(i);
+          const scale = window.innerWidth <= MOBILE_BP ? SCALE_MOBILE : SCALE_DESKTOP;
+          const viewport = page.getViewport({ scale });
+
+          const canvas = document.createElement('canvas');
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
+
+          const wrapper = document.createElement('div');
+          wrapper.className = 'pdf-page-wrapper';
+          wrapper.appendChild(canvas);
+          containerEl.appendChild(wrapper);
+
+          const ctx = canvas.getContext('2d');
+          await page.render({ canvasContext: ctx, viewport }).promise;
+        }
+
+        // Swap states
+        loadingEl.style.display = 'none';
+        containerEl.style.display = 'flex';
+      } catch (err) {
+        console.error('PDF render error:', err);
+        loadingEl.style.display = 'none';
+        errorEl.style.display = 'flex';
+      }
+    }
+
+    renderPDF();
+  </script>
 </body>
 
 </html>
