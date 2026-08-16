@@ -1,42 +1,106 @@
 // ===================================
-// DOT-GRID CANVAS BACKGROUND
+// NETWORK TOPOLOGY BACKGROUND
+// Nodes connected like a fabric diagram, with packets
+// occasionally traveling a link — a nod to the day job.
 // ===================================
-function initDotGrid() {
-    const canvas = document.getElementById('dot-grid');
+function initNetworkCanvas() {
+    const canvas = document.getElementById('bg-canvas');
     if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
     let animationFrame;
-    let dots = [];
-    const DOT_SPACING = 40;
-    const DOT_RADIUS = 1;
-    const DOT_COLOR = 'rgba(255, 255, 255, 0.12)';
+    let nodes = [];
+    let edges = [];
+    let pulses = [];
+
+    const NODE_SPACING = 150;
+    const LINK_DISTANCE = 190;
+    const MAX_LINKS_PER_NODE = 2;
+    const PULSE_SPAWN_INTERVAL = 1000;
+
+    let lineColor = 'rgba(255, 255, 255, 0.08)';
+    let nodeColor = 'rgba(255, 255, 255, 0.18)';
+    let pulseColor = '245, 158, 11';
+
+    function isLightTheme() {
+        const attr = document.documentElement.getAttribute('data-theme');
+        if (attr === 'light') return true;
+        if (attr === 'dark') return false;
+        return window.matchMedia('(prefers-color-scheme: light)').matches;
+    }
+
+    function refreshPalette() {
+        if (isLightTheme()) {
+            lineColor = 'rgba(23, 20, 18, 0.10)';
+            nodeColor = 'rgba(23, 20, 18, 0.22)';
+            pulseColor = '180, 83, 9';
+        } else {
+            lineColor = 'rgba(255, 255, 255, 0.08)';
+            nodeColor = 'rgba(255, 255, 255, 0.18)';
+            pulseColor = '245, 158, 11';
+        }
+    }
 
     function resize() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        generateDots();
+        generateGraph();
     }
 
-    function generateDots() {
-        dots = [];
-        const cols = Math.ceil(canvas.width / DOT_SPACING) + 1;
-        const rows = Math.ceil(canvas.height / DOT_SPACING) + 1;
+    function generateGraph() {
+        nodes = [];
+        const cols = Math.max(3, Math.round(canvas.width / NODE_SPACING));
+        const rows = Math.max(3, Math.round(canvas.height / NODE_SPACING));
+        const cellW = canvas.width / cols;
+        const cellH = canvas.height / rows;
 
         for (let i = 0; i < cols; i++) {
             for (let j = 0; j < rows; j++) {
-                dots.push({
-                    x: i * DOT_SPACING,
-                    y: j * DOT_SPACING,
-                    baseOpacity: 0.12 + Math.random() * 0.08,
-                    phase: Math.random() * Math.PI * 2
+                nodes.push({
+                    x: i * cellW + cellW / 2 + (Math.random() - 0.5) * cellW * 0.6,
+                    y: j * cellH + cellH / 2 + (Math.random() - 0.5) * cellH * 0.6,
+                    driftPhase: Math.random() * Math.PI * 2,
+                    driftAmp: 4 + Math.random() * 6
                 });
             }
         }
+
+        edges = [];
+        for (let a = 0; a < nodes.length; a++) {
+            const candidates = [];
+            for (let b = 0; b < nodes.length; b++) {
+                if (a === b) continue;
+                const dx = nodes[a].x - nodes[b].x;
+                const dy = nodes[a].y - nodes[b].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < LINK_DISTANCE) candidates.push({ b, dist });
+            }
+            candidates.sort((p, q) => p.dist - q.dist);
+            candidates.slice(0, MAX_LINKS_PER_NODE).forEach(c => {
+                const key = a < c.b ? `${a}-${c.b}` : `${c.b}-${a}`;
+                if (!edges.some(e => e.key === key)) {
+                    edges.push({ key, a, b: c.b });
+                }
+            });
+        }
+
+        pulses = [];
     }
 
+    function spawnPulse(time) {
+        if (!edges.length) return;
+        const edge = edges[Math.floor(Math.random() * edges.length)];
+        pulses.push({
+            edge,
+            forward: Math.random() > 0.5,
+            start: time,
+            duration: 1400 + Math.random() * 1200
+        });
+    }
+
+    let lastPulseSpawn = 0;
     let lastFrameTime = 0;
-    const FRAME_INTERVAL = 1000 / 30; // Cap at 30fps — smooth enough for subtle pulse
+    const FRAME_INTERVAL = 1000 / 30; // Cap at 30fps — smooth enough, easy on battery
 
     function draw(time) {
         animationFrame = requestAnimationFrame(draw);
@@ -45,14 +109,53 @@ function initDotGrid() {
         if (delta < FRAME_INTERVAL) return;
         lastFrameTime = time - (delta % FRAME_INTERVAL);
 
+        if (time - lastPulseSpawn > PULSE_SPAWN_INTERVAL) {
+            spawnPulse(time);
+            lastPulseSpawn = time;
+        }
+
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        dots.forEach(dot => {
-            const pulse = Math.sin(time * 0.001 + dot.phase) * 0.04;
-            const opacity = dot.baseOpacity + pulse;
+        const positions = nodes.map(n => ({
+            x: n.x + Math.sin(time * 0.0002 + n.driftPhase) * n.driftAmp,
+            y: n.y + Math.cos(time * 0.00016 + n.driftPhase) * n.driftAmp
+        }));
+
+        ctx.strokeStyle = lineColor;
+        ctx.lineWidth = 1;
+        edges.forEach(edge => {
+            const p1 = positions[edge.a];
+            const p2 = positions[edge.b];
             ctx.beginPath();
-            ctx.arc(dot.x, dot.y, DOT_RADIUS, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+        });
+
+        ctx.fillStyle = nodeColor;
+        positions.forEach(p => {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 1.6, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        pulses = pulses.filter(pulse => (time - pulse.start) < pulse.duration);
+        pulses.forEach(pulse => {
+            const t = (time - pulse.start) / pulse.duration;
+            const from = pulse.forward ? positions[pulse.edge.a] : positions[pulse.edge.b];
+            const to = pulse.forward ? positions[pulse.edge.b] : positions[pulse.edge.a];
+            const x = from.x + (to.x - from.x) * t;
+            const y = from.y + (to.y - from.y) * t;
+            const fade = Math.sin(t * Math.PI);
+
+            ctx.beginPath();
+            ctx.arc(x, y, 2.4, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${pulseColor}, ${0.8 * fade})`;
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.arc(x, y, 6, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${pulseColor}, ${0.15 * fade})`;
             ctx.fill();
         });
     }
@@ -67,8 +170,74 @@ function initDotGrid() {
     });
 
     window.addEventListener('resize', resize);
+    document.addEventListener('themechange', refreshPalette);
+    const lightSchemeQuery = window.matchMedia('(prefers-color-scheme: light)');
+    if (lightSchemeQuery.addEventListener) {
+        lightSchemeQuery.addEventListener('change', refreshPalette);
+    }
+
+    refreshPalette();
     resize();
     animationFrame = requestAnimationFrame(draw);
+}
+
+// ===================================
+// THEME TOGGLE (dark / light)
+// ===================================
+function initThemeToggle() {
+    const root = document.documentElement;
+    const buttons = document.querySelectorAll('.theme-toggle');
+    if (!buttons.length) return;
+
+    function getStoredTheme() {
+        try {
+            return localStorage.getItem('theme');
+        } catch (e) {
+            return null;
+        }
+    }
+
+    function setStoredTheme(theme) {
+        try {
+            localStorage.setItem('theme', theme);
+        } catch (e) {
+            // Storage unavailable (private mode, etc.) — theme just won't persist.
+        }
+    }
+
+    function currentTheme() {
+        const attr = root.getAttribute('data-theme');
+        if (attr === 'light' || attr === 'dark') return attr;
+        return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    }
+
+    function applyTheme(theme, persist) {
+        root.setAttribute('data-theme', theme);
+
+        const label = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+        buttons.forEach(btn => btn.setAttribute('aria-label', label));
+
+        const meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', theme === 'light' ? '#fafaf9' : '#0c0c0c');
+
+        if (persist) setStoredTheme(theme);
+        document.dispatchEvent(new CustomEvent('themechange', { detail: { theme } }));
+    }
+
+    applyTheme(currentTheme(), false);
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            applyTheme(currentTheme() === 'dark' ? 'light' : 'dark', true);
+        });
+    });
+
+    const lightSchemeQuery = window.matchMedia('(prefers-color-scheme: light)');
+    if (lightSchemeQuery.addEventListener) {
+        lightSchemeQuery.addEventListener('change', () => {
+            if (!getStoredTheme()) applyTheme(currentTheme(), false);
+        });
+    }
 }
 
 // ===================================
@@ -222,7 +391,7 @@ function initMagneticHover() {
     // Only on non-touch
     if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
 
-    const cards = document.querySelectorAll('.skill-category, .stat-card');
+    const cards = document.querySelectorAll('.skill-category, .stat-card, .project-card');
 
     cards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
@@ -319,7 +488,8 @@ function initBlogFilters() {
 // INITIALIZE ALL
 // ===================================
 document.addEventListener('DOMContentLoaded', () => {
-    initDotGrid();
+    initThemeToggle();
+    initNetworkCanvas();
     initTypedText();
     initScrollReveal();
     initScrollProgress();
