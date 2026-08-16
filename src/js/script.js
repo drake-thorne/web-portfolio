@@ -218,7 +218,7 @@ function initThemeToggle() {
         buttons.forEach(btn => btn.setAttribute('aria-label', label));
 
         const meta = document.querySelector('meta[name="theme-color"]');
-        if (meta) meta.setAttribute('content', theme === 'light' ? '#fafaf9' : '#0c0c0c');
+        if (meta) meta.setAttribute('content', theme === 'light' ? '#f7f6f3' : '#0c0c0c');
 
         if (persist) setStoredTheme(theme);
         document.dispatchEvent(new CustomEvent('themechange', { detail: { theme } }));
@@ -384,30 +384,6 @@ function initSmartHeader() {
     });
 }
 
-// ===================================
-// MAGNETIC HOVER EFFECT
-// ===================================
-function initMagneticHover() {
-    // Only on non-touch
-    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
-
-    const cards = document.querySelectorAll('.skill-category, .stat-card, .project-card');
-
-    cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-
-            card.style.transform = `translateY(-4px) rotateX(${-y * 0.04}deg) rotateY(${x * 0.04}deg)`;
-        });
-
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = '';
-        });
-    });
-}
-
 function initPagesDropdown() {
     const wrapper = document.getElementById('pagesDropdown');
     const btn = document.getElementById('pagesBtn');
@@ -496,7 +472,4 @@ document.addEventListener('DOMContentLoaded', () => {
     initSmartHeader();
     initPagesDropdown();
     initBlogFilters();
-
-    // Magnetic hover after a short delay to let layout settle
-    setTimeout(initMagneticHover, 500);
 });
