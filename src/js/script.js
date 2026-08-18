@@ -248,10 +248,10 @@ function initTypedText() {
     if (!element) return;
 
     const phrases = [
-        'Networking & DevOps specialist.',
-        'Network automation engineer.',
-        'Platform reliability engineer.',
-        'Infrastructure as Code expert.'
+        'Networking & DevOps specialist',
+        'Network automation engineer',
+        'Platform reliability engineer',
+        'Infrastructure as Code expert'
     ];
 
     let phraseIndex = 0;
